@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "458533486169",
+    "firebase_url": "https://dutch-game.firebaseio.com",
+    "project_id": "dutch-game",
+    "storage_bucket": "dutch-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458533486169:android:81fb03ce38dd45bce27b48",
+        "android_client_info": {
+          "package_name": "com.example.dutch_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458533486169-fi6osm5icjgtm7k45lb4oiprb40qvo96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu4yfab9Tc79KomH-h1I4RbipDXgbzJLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458533486169-fi6osm5icjgtm7k45lb4oiprb40qvo96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
