@@ -45,6 +45,7 @@ class _SignInState extends State<SignIn> {
         child: Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(height: 20.0),
               TextFormField(
@@ -84,6 +85,12 @@ class _SignInState extends State<SignIn> {
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14.0)
               ),
+              MaterialButton(
+                onPressed: () =>  _auth.googleSignIn(),
+                color: Colors.white,
+                textColor: Colors.black,
+                child: Text('Login with Google'),
+              )
             ]
           ),
         ),
