@@ -1,4 +1,5 @@
 import 'package:dutch_game/screens/board/board.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dutch_game/models/user.dart';
@@ -10,8 +11,8 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final user = Provider.of<User>(context);
-       
-    // return eitjer Home or Auth widget
+     
+    // return eitjer Home or Auth widgetr
     if(user == null) {
       return Authenticate();
     } else {
