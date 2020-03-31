@@ -73,7 +73,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()){
-                    dynamic result = await _auth.signWithEmailAndPassword(email, password);
+                    dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                     if(result == null){
                       setState (() => error = 'Could not sign in with those credentials');
                     }
@@ -86,7 +86,7 @@ class _SignInState extends State<SignIn> {
                 style: TextStyle(color: Colors.red, fontSize: 14.0)
               ),
               MaterialButton(
-                onPressed: () =>  _auth.googleSignIn(),
+                onPressed: () =>  _auth.signInWithGoogle(),
                 color: Colors.white,
                 textColor: Colors.black,
                 child: Text('Login with Google'),
