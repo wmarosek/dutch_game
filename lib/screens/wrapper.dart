@@ -1,3 +1,4 @@
+import 'package:dutch_game/screens/board/board.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:dutch_game/models/user.dart';
@@ -14,7 +15,7 @@ class Wrapper extends StatelessWidget {
     if(user == null) {
       return Authenticate();
     } else {
-      return Home();
+      return Board();
     }
   }
 }
