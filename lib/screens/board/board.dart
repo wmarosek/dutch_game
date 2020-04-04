@@ -2,6 +2,7 @@ import 'package:dutch_game/screens/board/mainDeck.dart';
 import 'package:dutch_game/screens/board/playerDeck.dart';
 import 'package:flutter/material.dart';
 import 'package:dutch_game/services/auth.dart';
+import 'package:dutch_game/screens/home/home.dart';
 
 
 class Board extends StatefulWidget {
@@ -33,18 +34,23 @@ class _BoardState extends State<Board> {
         backgroundColor: Colors.grey[700],
         appBar: AppBar(
           backgroundColor: Colors.grey[900],
-          title: Text('The Dutch Game'),
           elevation: 0.0,
           actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('logout'),
-              onPressed: () async {
-                await _auth.signOut();
-              }
+            FlatButton(
+                child: Text(
+                  'exit game',
+                  style: TextStyle(fontSize: 10),
+                ),
+                textColor: Colors.white,
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
               )
           ],
-          leading: Icon(Icons.menu),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
