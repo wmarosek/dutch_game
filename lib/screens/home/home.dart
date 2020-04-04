@@ -14,39 +14,33 @@ class HomePage extends StatefulWidget {
   Home createState() => Home();
 }
 
-
 class Home extends State<HomePage> {
   final AuthServices _auth = AuthServices();
   final FirebaseMessaging _fcm = FirebaseMessaging();
-
 
   @override
   void initState() {
     _saveDeviceToken(); // To store token to firestore.
   }
+
   _saveDeviceToken() async {
-      String fcmToken = await _fcm.getToken();
-      if (fcmToken != null) {
-            var token = Firestore.instance
-            .collection('tokens')
-            .document('key')
-            .setData({'fcmToken': fcmToken}, merge: true);
-              print(fcmToken);
-              _auth.saveUserFcmTokenToPreference(fcmToken);
-          }
+    String fcmToken = await _fcm.getToken();
+    if (fcmToken != null) {
+      var token = Firestore.instance
+          .collection('tokens')
+          .document('key')
+          .setData({'fcmToken': fcmToken}, merge: true);
+      print(fcmToken);
+      _auth.saveUserFcmTokenToPreference(fcmToken);
     }
-
-  
-
-
-
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[10],
+      backgroundColor: Colors.grey[700],
       appBar: AppBar(
-        backgroundColor: Colors.blue[400],
+        backgroundColor: Colors.grey[900],
         title: Text('The Dutch Game'),
         elevation: 0.0,
       ),
@@ -61,42 +55,42 @@ class Home extends State<HomePage> {
           },
         ),
       ),
-        drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue
-              ),
-              child: Text(
-                'Your profile',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
+    drawer: Drawer(
+        child: Container(
+          color: Colors.grey[700],
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.grey[900]),
+                child: Text(
+                  'Your profile',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Log out'),
-              onTap: () async{
-                await _auth.signOut();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp()),
-                  (Route<dynamic> route) => false,
-                );
-              },
-            ),
-          ],
-        ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Profile'),
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Log out'),
+                onTap: () async {
+                  await _auth.signOut();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              ),
+            ],
+          ),
+        )
       ),
-
     );
   }
 }
