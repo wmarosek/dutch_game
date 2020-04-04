@@ -45,7 +45,7 @@ class _BoardState extends State<Board> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => Home()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                     (Route<dynamic> route) => false,
                   );
                 },
