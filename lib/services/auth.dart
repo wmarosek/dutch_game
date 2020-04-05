@@ -71,15 +71,14 @@ class AuthServices {
   //  sign out
   Future signOut() async {
     try {
+      User currentUser = await getCurrentUser();
+      addUserStatusToStore(currentUser.uid, UserUtil().getStringFromState(UserState.offline));
       return await _auth.signOut();
     } catch(e) {
       print(e.toString());
       return null;
     }
   }
-
-
-
 
 
   Future<User> _proccesAuthUser(FirebaseUser authUser) async {
@@ -119,6 +118,15 @@ class AuthServices {
         .document(userId)
         .setData({'fcmToken': fcmToken}, merge: true);
   }
+
+
+  addUserStatusToStore(String userId, String status) async{
+      await Firestore.instance
+        .collection('users')
+        .document(userId)
+        .setData({'currentState': status}, merge: true);
+  }
+
 
 
 

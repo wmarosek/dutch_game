@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dutch_game/main.dart';
+import 'package:dutch_game/screens/app_bars.dart';
+import 'package:dutch_game/screens/app_bars.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -27,24 +29,17 @@ class Home extends State<HomePage> {
   _saveDeviceToken() async {
     String fcmToken = await _fcm.getToken();
     if (fcmToken != null) {
-      var token = Firestore.instance
-          .collection('tokens')
-          .document('key')
-          .setData({'fcmToken': fcmToken}, merge: true);
-      print(fcmToken);
       _auth.saveUserFcmTokenToPreference(fcmToken);
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[700],
-      appBar: AppBar(
-        backgroundColor: Colors.grey[900],
-        title: Text('The Dutch Game'),
-        elevation: 0.0,
-      ),
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      appBar: TopAppBar().build(context),
+      bottomNavigationBar: BottomAppBarSignIn().build(context),
       body: Center(
         child: RaisedButton(
           child: Text('START GAME'),
@@ -56,42 +51,7 @@ class Home extends State<HomePage> {
           },
         ),
       ),
-    drawer: Drawer(
-        child: Container(
-          color: Colors.grey[700],
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(color: Colors.grey[900]),
-                child: Text(
-                  'Your profile',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-              ),
-              ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: Text('Log out'),
-                onTap: () async {
-                  await _auth.signOut();
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyApp()),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              ),
-            ],
-          ),
-        )
-      ),
+      endDrawer: DrawerRight().build(context),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:dutch_game/main.dart';
+import 'package:dutch_game/screens/app_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:dutch_game/services/auth.dart';
 import 'package:dutch_game/shared/constants.dart';
@@ -29,21 +31,8 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.grey[700],      
-      appBar: AppBar(
-        backgroundColor: Colors.grey[900],
-        elevation: 0.0,
-        title: Text('Sign up'),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.person, color: Colors.white),
-            label: Text('Sign in', style: TextStyle(color: Colors.white)),
-            onPressed: () {
-              widget.toggleView();
-            },
-          ),
-        ],
-      ),
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      appBar: TopAppBarRegister().build(context),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
@@ -88,6 +77,13 @@ class _RegisterState extends State<Register> {
                     dynamic result  = await _auth.signUpWithEmailAndPassword(username, email, password);
                     if(result == null){
                       setState (() => error = 'please supply a valid email');
+                    }
+                    else{
+                      Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp()),
+                      (Route<dynamic> route) => false,
+                      );
                     }
                   }
                 },

@@ -1,3 +1,5 @@
+import 'package:dutch_game/models/user_list.dart';
+import 'package:dutch_game/screens/app_bars.dart';
 import 'package:dutch_game/screens/board/mainDeck.dart';
 import 'package:dutch_game/screens/board/playerDeck.dart';
 import 'package:flutter/material.dart';
@@ -29,35 +31,20 @@ class _BoardState extends State<Board> {
 
     return MaterialApp(
       title: "DutchGame",
-
+    
       home: Scaffold(
-        backgroundColor: Colors.grey[700],
-        appBar: AppBar(
-          backgroundColor: Colors.grey[900],
-          elevation: 0.0,
-          actions: <Widget>[
-            FlatButton(
-                child: Text(
-                  'exit game',
-                  style: TextStyle(fontSize: 10),
-                ),
-                textColor: Colors.white,
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              )
-          ],
-        ),
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        appBar: TopAppBar().build(context),
+        endDrawer: DrawerRight(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            PlayerDeck(pos: Alignment.topCenter),
-            MainDeck(),
-            PlayerDeck(pos: Alignment.bottomCenter),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: UserListState())
+            // PlayerDeck(pos: Alignment.topCenter),
+            // MainDeck(),
+            // PlayerDeck(pos: Alignment.bottomCenter),
           ],
         ),
       )
