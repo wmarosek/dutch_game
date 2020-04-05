@@ -20,6 +20,7 @@ class Home extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
     _saveDeviceToken(); // To store token to firestore.
   }
 
