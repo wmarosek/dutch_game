@@ -1,3 +1,0 @@
-enum SocialLoginType{
-  google
-}
